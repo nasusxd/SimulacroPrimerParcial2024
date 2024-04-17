@@ -1,0 +1,24 @@
+<?php
+include_once ("cliente.php");
+include_once ("moto.php");
+include_once ("venta.php");
+include_once ("empresa.php");
+$objcliente1=new cliente("juan","sastre",true,"dni",44516645);
+$objcliente2=new cliente("pedro","andujar",true,"dni",45665789);
+$objmoto1=new moto(11,2230000,2022,"Benelli Imperiale 400 ",85,true);
+$objmoto2=new moto(12,584000 ,2021,"Zanella Zr 150 Ohc",70,true);
+$objmoto3=new moto(13,999900,2023,"Zanella Patagonian Eagle 250",55,false);
+$objEmpresa=new empresa("alta gama","Av Argenetina 123",[$objcliente1,$objcliente2],[$objmoto1,$objmoto2,$objmoto3],[]);
+$colCodigosMoto=[11,12,13];
+$objEmpresa->registrarVenta($colCodigosMoto, $objcliente2);
+echo $objEmpresa;
+$colCodigosMoto=[0];
+$objEmpresa->registrarVenta($colCodigosMoto, $objcliente2);
+echo $objEmpresa;
+$colCodigosMoto=[2];
+$objEmpresa->registrarVenta($colCodigosMoto, $objcliente2);
+echo $objEmpresa;
+$venta=$objEmpresa->retornarVentasXCliente("dni",44516645);
+print_r($venta) ;
+$venta=$objEmpresa->retornarVentasXCliente("dni",45665789);
+print_r($venta) ;
